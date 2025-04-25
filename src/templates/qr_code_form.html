@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}
+    QR Code Form - My Flask Application
+{% endblock %}
+
+{% block content %}
+    <div>
+        <form action="{{ url_for('qrcode_bp.qr_code_view') }}" method="post" id="qr_form">
+            <div>
+                <label for="first_name">First Name: </label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div>
+                <label for="last_name">Last Name: </label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            <div>
+                <label for="email">Email: </label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <button type="submit">
+                Generate QR
+            </button>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block qrbox %}
+    {% if qr_image %}
+        <!-- this is in memory using bytesio -->
+        
+        <!-- format -->
+        <!-- data:[<mediatype>][;base64],<data> -->
+        <!-- data:image/png;base64,{{ qr_image }} -->
+        <!-- data: → tells the browser this is a Data URI.
+
+        image/png → the MIME type (PNG image in this case).
+        
+        base64 → indicates that the data is base64 encoded.
+        
+        {{ qr_image }} → your actual base64-encoded image string. -->
+        <img src="data:image/png;base64,{{ qr_image }}" alt="QR Code" class="qr-code">
+    {% endif %}
+{% endblock %}

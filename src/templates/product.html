@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Product - My Flask Application
+{% endblock %}
+
+{% block content %}
+    <h1>Our Products</h1>
+    
+    <ul>
+        {% for product in products %}
+            {% if product %}
+                <li>
+                    <p>
+                        Product: {{ product.name }}  
+                        <blockquote>
+                            <p>Price: {{ product.price }}</p>
+                            <p>Description: {{ product.description if product.description else "No description" }}</p>
+                            <p>Quantity: {{ product.qty }}</p>
+                        </blockquote>
+                    </p>
+                    
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+
+{% endblock %}

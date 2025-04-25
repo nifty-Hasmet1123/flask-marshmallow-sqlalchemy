@@ -15,3 +15,12 @@ class Product(db_instance.Model):
         self.qty = qty
         self.description = description
 
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "qty": self.qty,
+            "price": self.price
+        }
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" type="text/css">
+    <title>
+        {% block title %}
+        My Flask Application Powered By Jinja
+        {% endblock %}
+    </title>
+</head>
+<body>
+    <header>
+        <nav>
+            <li>
+                <!-- to call the blueprint use the sample_bp blueprint name then the name of the as_view of it
+                see MyIndex class line 4 and line 11 -->
+                <a href="{{ url_for('sample_bp.index_view') }}">Home</a>
+            </li>
+            <li>
+                <a href="{{ url_for('sample_bp.get_products') }}">Products</a>
+            </li>
+            <li>
+                <a href="{{ url_for('qrcode_bp.qr_code_view') }}">QR</a>
+            </li>
+        </nav>
+    </header>
+    <main>
+        <!-- default will be index.html -->
+        {% block content %}
+            
+        {% endblock %}
+        
+        {% block qrbox %}
+            
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 My Flask Application</p>
+    </footer>
+</body>
+</html>
